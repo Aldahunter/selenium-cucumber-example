@@ -8,6 +8,7 @@
 #Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
 #Examples: Container for s table
 @selenium
+
 Feature: Users login to into Swag Labs
 
   As a user I want to beable to visit the Swag Labs home page and login to use the website or be told
