@@ -46,10 +46,10 @@ public class SwagLabsUserLoginsStepDefinitions {
 	
 
 	@When("the user requests {string}")
-	public void the_user_requests(String site) throws IOException {
+	public void the_user_requests(String url) throws IOException {
 		swagLabPage = new SwagLabLoginPage(webDriver);
 		screenshotManager.takeAndSaveScreenshot(webDriver, screenshotDir + "successfulLoginTest - Pre Login Page.png");
-		assertEquals(webDriver.getCurrentUrl(), site);
+		assertEquals(webDriver.getCurrentUrl(), url);
 	}
 
 	@When("enters their login details")
@@ -66,14 +66,12 @@ public class SwagLabsUserLoginsStepDefinitions {
 	
 	@Then("they cannot login")
 	public void they_cannot_login() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    assertEquals(webDriver.getCurrentUrl(), SwagLabLoginPage.URL);
 	}
-	
+
 	@Then("are told error {string}")
 	public void are_told(String errorMsg) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		assertEquals(errorMsg, ((SwagLabLoginPage)swagLabPage).getErrorMessage());
 	}
 	
 }
