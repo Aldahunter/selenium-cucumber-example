@@ -2,35 +2,39 @@ package com.qa.examples.seleniumcucumberexample.swagLabPOMs;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class SwagLabHomePage implements ISwagLabPage {
 	public static final String URL = "https://www.saucedemo.com/inventory.html";
-	public static final String expectedTitle = "Swag Labs";
+	private static final String expectedTitle = "Swag Labs";
+	
+	private WebDriver webDriver;
+	
+	
 	@Override
 	public String getURL() { return URL; }
 	@Override
 	public String getExpectedTitle() { return expectedTitle; }
 
-	private WebDriver driver;
-
-	private By inventoryItemDivSelector = By.className("inventory_item");
 	
+	@FindBy(className = "inventory_item")
+	private List<WebElement> inventoryItems;
 
+	
 	public SwagLabHomePage(WebDriver driver) {
-		this.driver = driver;
+		this.webDriver = driver;
 		
-		driver.get( getURL() );
-
-		if (!driver.getTitle().equals( getExpectedTitle() )) {
+		webDriver.get( getURL() );
+		if (!webDriver.getTitle().equals( getExpectedTitle() )) {
 			String exceptionMsg = String.format("The Swag Lab Home Page did not load (%f)", getURL());
 			throw new IllegalStateException(exceptionMsg);
 		}
 	}
 
+	
 	public List<WebElement> getInventoryItems() {
-		return driver.findElements(inventoryItemDivSelector);
+		return inventoryItems;
 	}
 }

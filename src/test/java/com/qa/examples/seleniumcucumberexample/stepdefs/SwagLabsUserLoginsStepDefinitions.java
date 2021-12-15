@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import com.qa.examples.seleniumcucumberexample.swagLabPOMs.ISwagLabPage;
 import com.qa.examples.seleniumcucumberexample.swagLabPOMs.SwagLabHomePage;
 import com.qa.examples.seleniumcucumberexample.swagLabPOMs.SwagLabLoginPage;
+import com.qa.examples.seleniumcucumberexample.swagLabPOMs.SwagLabUtilites;
 import com.qa.examples.seleniumcucumberexample.utils.ScreenshotManager;
 import com.qa.examples.seleniumcucumberexample.utils.SeleniumHooks;
 
@@ -47,7 +48,7 @@ public class SwagLabsUserLoginsStepDefinitions {
 
 	@When("the user requests {string}")
 	public void the_user_requests(String url) throws IOException {
-		swagLabPage = new SwagLabLoginPage(webDriver);
+		swagLabPage = SwagLabUtilites.getSwagLabPage(webDriver, url);
 		screenshotManager.takeAndSaveScreenshot(webDriver, screenshotDir + "successfulLoginTest - Pre Login Page.png");
 		assertEquals(webDriver.getCurrentUrl(), url);
 	}
