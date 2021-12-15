@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.openqa.selenium.WebDriver;
 
-import com.qa.examples.seleniumcucumberexample.utils.WebDriverHooks;
+import com.qa.examples.seleniumcucumberexample.utils.SeleniumHooks;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,7 +14,7 @@ public class BingStepDefinitions {
 	private WebDriver webDriver;
 	
 	// constructor injection
-	public BingStepDefinitions(WebDriverHooks hooks) {
+	public BingStepDefinitions(SeleniumHooks hooks) {
 		this.webDriver = hooks.getWebDriver();
 	}
 	

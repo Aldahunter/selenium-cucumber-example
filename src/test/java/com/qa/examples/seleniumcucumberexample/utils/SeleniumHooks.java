@@ -5,15 +5,17 @@ import org.openqa.selenium.WebDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
-public class WebDriverHooks {
+public class SeleniumHooks {
 
 	private WebDriver webDriver;
+	private ScreenshotManager screenshotManager;
 	
 	@Before("@selenium")
 	public void setup() throws Exception {
 		if (webDriver == null) {
 			webDriver = WebDriverFactory.getDriver();
 		}
+		screenshotManager = new ScreenshotManager();
 	}
 	
 	@After("@selenium")
@@ -23,5 +25,9 @@ public class WebDriverHooks {
 	
 	public WebDriver getWebDriver() {
 		return this.webDriver;
+	}
+	
+	public ScreenshotManager getScreenshotManager() {
+		return this.screenshotManager;
 	}
 }
