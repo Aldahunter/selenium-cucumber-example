@@ -18,12 +18,12 @@ public class BingStepDefinitions {
 		this.webDriver = hooks.getWebDriver();
 	}
 	
-	@When("the user requests {word}")
+	@When("the user requests {string}.")
 	public void theUserRequests(String site) {
 	    webDriver.get(site);
 	}
 
-	@Then("the user should be on the Bing home page")
+	@Then("the user should be on the Bing home page.")
 	public void theUserShouldBeOnTheBingHomePage() {
 		assertEquals("Bing", webDriver.getTitle());
 	}
