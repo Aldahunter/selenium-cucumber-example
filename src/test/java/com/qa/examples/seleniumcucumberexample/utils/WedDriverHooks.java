@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
-public class WedDriverHooks {
+public class WebDriverHooks {
 
 	private WebDriver webDriver;
 	
@@ -16,7 +16,7 @@ public class WedDriverHooks {
 		}
 	}
 	
-	@After("@slenium")
+	@After("@selenium")
 	public void teardown() {
 		webDriver.quit();
 	}
