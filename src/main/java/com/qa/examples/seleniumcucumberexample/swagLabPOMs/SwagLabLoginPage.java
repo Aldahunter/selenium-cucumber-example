@@ -2,6 +2,7 @@ package com.qa.examples.seleniumcucumberexample.swagLabPOMs;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class SwagLabLoginPage implements ISwagLabPage {
@@ -39,13 +40,14 @@ public class SwagLabLoginPage implements ISwagLabPage {
 	
 	
 	public SwagLabLoginPage enterLoginDetailslogin(String username, String password) {
-		usernameInp.sendKeys(username);
-		passwordInp.sendKeys(password);
+		Actions loginDetailsActions = new Actions(webDriver);
+		loginDetailsActions.sendKeys(usernameInp, username).sendKeys(passwordInp, password).perform();
 		return this;
 	}
 	
 	public ISwagLabPage clickLoginButton() {
-		loginBtn.click();
+		Actions loginButtonActions = new Actions(webDriver);
+		loginButtonActions.click(loginBtn).perform();
 		return SwagLabUtilites.getSwagLabPage(webDriver, this);
 	}
 	
