@@ -48,7 +48,7 @@ public class SwagLabLoginPage implements ISwagLabPage {
 	public ISwagLabPage clickLoginButton() {
 		Actions loginButtonActions = new Actions(webDriver);
 		loginButtonActions.click(loginBtn).perform();
-		return SwagLabUtilites.getSwagLabPage(webDriver, this);
+		return SwagLabUtilities.getSwagLabPage(webDriver, this);
 	}
 	
 	

@@ -1,15 +1,41 @@
 package com.qa.examples.seleniumcucumberexample.stepdefs;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+
+import com.qa.examples.seleniumcucumberexample.swagLabPOMs.ISwagLabPage;
+import com.qa.examples.seleniumcucumberexample.swagLabPOMs.SwagLabInventoryPage;
+import com.qa.examples.seleniumcucumberexample.swagLabPOMs.SwagLabLoginPage;
+import com.qa.examples.seleniumcucumberexample.swagLabPOMs.SwagLabUtilities;
+import com.qa.examples.seleniumcucumberexample.utils.ScreenshotManager;
+import com.qa.examples.seleniumcucumberexample.utils.SeleniumHooks;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SwagLabsCheckoutStepDefinitions {
 	
-	@Given("the user is logged in")
-	public void theUserIsLoggedIn() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	WebDriver webDriver;
+	ISwagLabPage swagLabPage;
+	ScreenshotManager screenshotManager;
+	String screenshotDir = ".\\target\\featureScreenshots\\SwagLabsCheckout\\";
+	
+	public SwagLabsCheckoutStepDefinitions(SeleniumHooks hooks) {
+		this.webDriver = hooks.getWebDriver();
+		this.screenshotManager = hooks.getScreenshotManager();
+	}
+	
+	@Given("the user is logged in as {string}:{string}")
+	public void theUserIsLoggedInAs(String username, String password) throws IOException {
+		swagLabPage = SwagLabUtilities.getSwagLabPage(webDriver, SwagLabLoginPage.URL);
+		swagLabPage = ((SwagLabLoginPage) swagLabPage).login(username, password);
+		screenshotManager.takeAndSaveScreenshot(webDriver, screenshotDir + "0-successfulLoginTest.png");
+		assertEquals(webDriver.getCurrentUrl(), SwagLabInventoryPage.URL);
 	}
 	
 	

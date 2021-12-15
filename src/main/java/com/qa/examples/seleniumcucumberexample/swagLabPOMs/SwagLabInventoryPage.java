@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SwagLabHomePage implements ISwagLabPage {
+public class SwagLabInventoryPage implements ISwagLabPage {
 	public static final String URL = "https://www.saucedemo.com/inventory.html";
 	private static final String expectedTitle = "Swag Labs";
 	
@@ -23,7 +23,7 @@ public class SwagLabHomePage implements ISwagLabPage {
 	private List<WebElement> inventoryItems;
 
 	
-	public SwagLabHomePage(WebDriver driver) {
+	public SwagLabInventoryPage(WebDriver driver) {
 		this.webDriver = driver;
 		
 		webDriver.get( getURL() );

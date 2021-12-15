@@ -3,12 +3,12 @@ package com.qa.examples.seleniumcucumberexample.swagLabPOMs;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class SwagLabUtilites {
+public class SwagLabUtilities {
 	
 	static public ISwagLabPage getSwagLabPage(WebDriver webDriver, String gotoUrl) {
 		switch (gotoUrl) {
-			case SwagLabHomePage.URL:
-				return PageFactory.initElements(webDriver, SwagLabHomePage.class);
+			case SwagLabInventoryPage.URL:
+				return PageFactory.initElements(webDriver, SwagLabInventoryPage.class);
 			case SwagLabLoginPage.URL:
 				return PageFactory.initElements(webDriver, SwagLabLoginPage.class);
 			default:
