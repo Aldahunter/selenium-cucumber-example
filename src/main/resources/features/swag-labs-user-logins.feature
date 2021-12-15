@@ -9,13 +9,29 @@
 #Examples: Container for s table
 @selenium
 Feature: Users login to into Swag Labs
-  
-  As a user I want to beable to visit the Swag Labs home page and login to use the website.
 
-  @tag1
-  Scenario: Successfully logs into Swag Labs
-    Given the users username ''
-    And password ''
-    When the user requests 'https://www.bing.com'
+  As a user I want to beable to visit the Swag Labs home page and login to use the website or be told
+  why I cannot login.
+
+  Scenario: Successfully logs-in to Swag Labs
+    Given the users username 'standard_user'
+    And password 'secret_sauce'
+    When the user requests 'https://www.saucedemo.com/'
     And enters their login details
     Then they successfully login
+
+  Scenario: Lockedout user gets told why they cannot login to Swag Labs
+    Given the users username 'locked_out_user'
+    And password 'secret_sauce'
+    When the user requests 'https://www.saucedemo.com/'
+    And enters their login details
+    Then they cannot login
+    And are told error 'Epic sadface: Sorry, this user has been locked out.'
+
+  Scenario: User with incorrect passwored gets told why they cannot login to Swag Labs
+    Given the users username 'problem_user'
+    And password 'wrong'
+    When the user requests 'https://www.saucedemo.com/'
+    And enters their login details
+    Then they cannot login
+    And are told error 'Epic sadface: Username and password do not match any user in this service'

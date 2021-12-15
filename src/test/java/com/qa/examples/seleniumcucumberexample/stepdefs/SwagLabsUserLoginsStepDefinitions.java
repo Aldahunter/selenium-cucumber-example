@@ -36,4 +36,16 @@ public class SwagLabsUserLoginsStepDefinitions {
 	    throw new io.cucumber.java.PendingException();
 	}
 	
+	@Then("they cannot login")
+	public void they_cannot_login() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+	
+	@Then("are told error {string}")
+	public void are_told(String errorMsg) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+	
 }
