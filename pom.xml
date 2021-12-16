@@ -11,6 +11,9 @@
 	<maven.compiler.source>11</maven.compiler.source>
 	<cucumber.version>6.10.4</cucumber.version>
 	<selenium.version>4.1.0</selenium.version>
+	<sonarqube.version>3.9.1.2184</sonarqube.version>
+	<jacoco.version>0.8.7</jacoco.version>
+	<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/jacoco-report/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
   </properties>
   
   <dependencies>
@@ -42,6 +45,66 @@
 	    <artifactId>selenium-java</artifactId>
 	    <version>${selenium.version}</version>
 	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+	<dependency>
+		<groupId>org.sonarsource.scanner.maven</groupId>
+		<artifactId>sonar-maven-plugin</artifactId>
+		<version>${sonarqube.version}</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+	<dependency>
+	    <groupId>org.jacoco</groupId>
+	    <artifactId>jacoco-maven-plugin</artifactId>
+	    <version>${jacoco.version}</version>
+	</dependency>
+
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+	    <artifactId>jacoco-maven-plugin</artifactId>
+	    <version>${jacoco.version}</version>
+  	    <executions>
+  	      <execution>
+	        <goals>
+	          <goal>prepare-agent</goal>
+	        </goals>
+	      </execution>
+	      <!-- attached to Maven test phase -->
+	      <execution>
+	        <id>report</id>
+	        <phase>package</phase>
+	        <goals>
+	          <goal>report</goal>
+	        </goals>
+             <!-- default target/jscoco/site/* -->
+             <configuration>
+                 <outputDirectory>
+                     target/jacoco-report
+                 </outputDirectory>
+             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>sonar</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.login>admin</sonar.login>
+        <sonar.password>aldahunter</sonar.password>
+      </properties>
+    </profile>
+  </profiles>
   
 </project>
