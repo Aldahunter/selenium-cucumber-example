@@ -1,11 +1,13 @@
-package com.qa.examples.seleniumcucumberexample.swagLabPOMs;
+package com.qa.examples.seleniumcucumberexample.swag_lab_pom;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class SwagLabUtilities {
+
+	private SwagLabUtilities() {}
 	
-	static public ISwagLabPage getSwagLabPage(WebDriver webDriver, String gotoUrl) {
+	public static ISwagLabPage getSwagLabPage(WebDriver webDriver, String gotoUrl) {
 		switch (gotoUrl) {
 			case SwagLabInventoryPage.URL:
 				return PageFactory.initElements(webDriver, SwagLabInventoryPage.class);
@@ -16,7 +18,7 @@ public class SwagLabUtilities {
 		}
 	}
 	
-	static public ISwagLabPage getSwagLabPage(WebDriver webDriver, ISwagLabPage currentPage){
+	public static ISwagLabPage getSwagLabPage(WebDriver webDriver, ISwagLabPage currentPage){
 		String currentUrl = webDriver.getCurrentUrl();
 		if ((currentPage != null) && currentUrl.equals( currentPage.getURL() )) { return currentPage; }
 		else { return getSwagLabPage(webDriver, currentUrl); }

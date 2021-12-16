@@ -7,10 +7,10 @@ import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
 
-import com.qa.examples.seleniumcucumberexample.swagLabPOMs.ISwagLabPage;
-import com.qa.examples.seleniumcucumberexample.swagLabPOMs.SwagLabInventoryPage;
-import com.qa.examples.seleniumcucumberexample.swagLabPOMs.SwagLabLoginPage;
-import com.qa.examples.seleniumcucumberexample.swagLabPOMs.SwagLabUtilities;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.ISwagLabPage;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabInventoryPage;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabLoginPage;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabUtilities;
 import com.qa.examples.seleniumcucumberexample.utils.ScreenshotManager;
 import com.qa.examples.seleniumcucumberexample.utils.SeleniumHooks;
 
@@ -67,7 +67,7 @@ public class SwagLabsUserLoginsStepDefinitions {
 	
 	@Then("they cannot login")
 	public void they_cannot_login() {
-	    assertEquals(webDriver.getCurrentUrl(), SwagLabLoginPage.URL);
+	    assertEquals(SwagLabLoginPage.URL, webDriver.getCurrentUrl());
 	}
 
 	@Then("are told error {string}")

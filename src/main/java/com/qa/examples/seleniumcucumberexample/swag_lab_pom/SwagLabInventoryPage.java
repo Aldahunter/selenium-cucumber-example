@@ -1,4 +1,4 @@
-package com.qa.examples.seleniumcucumberexample.swagLabPOMs;
+package com.qa.examples.seleniumcucumberexample.swag_lab_pom;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SwagLabInventoryPage implements ISwagLabPage {
 	public static final String URL = "https://www.saucedemo.com/inventory.html";
-	private static final String expectedTitle = "Swag Labs";
+	private static final String EXPECTED_TITLE = "Swag Labs";
 	
 	private WebDriver webDriver;
 	
@@ -17,15 +17,13 @@ public class SwagLabInventoryPage implements ISwagLabPage {
 	@Override
 	public String getURL() { return URL; }
 	@Override
-	public String getExpectedTitle() { return expectedTitle; }
+	public String getExpectedTitle() { return EXPECTED_TITLE; }
 
 	
 	@FindBy(className = "inventory_item")
 	private List<WebElement> inventoryItems;
 	@FindBy(className = "shopping_cart_badge")
 	private WebElement shoppingCartBadge;
-	
-	private By inventoryItemNameSelector = By.className("inventory_item_name");
 
 	
 	public SwagLabInventoryPage(WebDriver driver) {

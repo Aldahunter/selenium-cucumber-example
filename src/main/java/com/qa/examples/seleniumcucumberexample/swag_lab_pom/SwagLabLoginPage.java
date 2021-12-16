@@ -1,4 +1,4 @@
-package com.qa.examples.seleniumcucumberexample.swagLabPOMs;
+package com.qa.examples.seleniumcucumberexample.swag_lab_pom;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SwagLabLoginPage implements ISwagLabPage {
 	public static final String URL = "https://www.saucedemo.com/";
-	private static final String expectedTitle = "Swag Labs";
+	private static final String EXPECTED_TITLE = "Swag Labs";
 
 	private WebDriver webDriver;
 	
@@ -15,7 +15,7 @@ public class SwagLabLoginPage implements ISwagLabPage {
 	@Override
 	public String getURL() { return URL; }
 	@Override
-	public String getExpectedTitle() { return expectedTitle; }
+	public String getExpectedTitle() { return EXPECTED_TITLE; }
 	
 	
 	@FindBy(id="user-name")
