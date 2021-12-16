@@ -2,6 +2,7 @@ package com.qa.examples.seleniumcucumberexample.swagLabPOMs;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,10 @@ public class SwagLabInventoryPage implements ISwagLabPage {
 	
 	@FindBy(className = "inventory_item")
 	private List<WebElement> inventoryItems;
+	@FindBy(className = "shopping_cart_badge")
+	private WebElement shoppingCartBadge;
+	
+	private By inventoryItemNameSelector = By.className("inventory_item_name");
 
 	
 	public SwagLabInventoryPage(WebDriver driver) {
@@ -36,5 +41,29 @@ public class SwagLabInventoryPage implements ISwagLabPage {
 	
 	public List<WebElement> getInventoryItems() {
 		return inventoryItems;
+	}
+	
+	private String getAddToCartButtonId(String itemName) {
+		return "add-to-cart-" + itemName.strip().toLowerCase().replace(' ', '-');
+	}
+	
+	private WebElement getAddToCartButton(String itemName) {
+		return webDriver.findElement( By.id(getAddToCartButtonId(itemName)) );
+	}
+	
+	public SwagLabInventoryPage addItemToCart(String itemName) {
+		getAddToCartButton(itemName).click();
+		return this;
+	}
+	
+	public SwagLabInventoryPage addItemsToCart(List<String> itemNames) {
+		for (String itemName : itemNames) {
+			addItemToCart(itemName);
+		}
+		return this;
+	}
+	
+	public int getNumberOfItemsInCart() {
+		return Integer.parseInt(shoppingCartBadge.getText());
 	}
 }

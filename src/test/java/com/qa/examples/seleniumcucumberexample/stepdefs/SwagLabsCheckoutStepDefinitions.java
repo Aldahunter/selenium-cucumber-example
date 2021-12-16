@@ -1,9 +1,8 @@
 package com.qa.examples.seleniumcucumberexample.stepdefs;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
+import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 
@@ -34,21 +33,17 @@ public class SwagLabsCheckoutStepDefinitions {
 	public void theUserIsLoggedInAs(String username, String password) throws IOException {
 		swagLabPage = SwagLabUtilities.getSwagLabPage(webDriver, SwagLabLoginPage.URL);
 		swagLabPage = ((SwagLabLoginPage) swagLabPage).login(username, password);
-		screenshotManager.takeAndSaveScreenshot(webDriver, screenshotDir + "0-successfulLoginTest.png");
-		assertEquals(webDriver.getCurrentUrl(), SwagLabInventoryPage.URL);
+		screenshotManager.takeAndSaveScreenshot(webDriver, screenshotDir + "0-userLoggedIn.png");
+		assertEquals(SwagLabInventoryPage.URL, webDriver.getCurrentUrl());
 	}
 	
 	
 	@When("the user adds items to the cart")
-	public void theUserAddsItemsToTheCart(io.cucumber.datatable.DataTable dataTable) {
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-	    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-	    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-	    //
-	    // For other transformations you can register a DataTableType.
-	    throw new io.cucumber.java.PendingException();
+	public void theUserAddsItemsToTheCart(io.cucumber.datatable.DataTable dataTable) throws IOException {
+	    List<String> checkoutItems = dataTable.asList(String.class);
+	    swagLabPage = ((SwagLabInventoryPage) swagLabPage).addItemsToCart(checkoutItems);
+		screenshotManager.takeAndSaveScreenshot(webDriver, screenshotDir + "1-itemsAddedToCart.png");
+	    assertEquals(checkoutItems.size(), ((SwagLabInventoryPage) swagLabPage).getNumberOfItemsInCart());
 	}
 	
 	@When("the user navigates to the cart")
