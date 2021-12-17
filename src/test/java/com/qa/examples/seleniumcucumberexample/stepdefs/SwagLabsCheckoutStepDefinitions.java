@@ -68,14 +68,14 @@ public class SwagLabsCheckoutStepDefinitions {
 
 	@When("the user enters their lastname {string}")
 	public void theUserEntersTheirLastname(String lastname) {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		swagLabPage = ((SwagLabCheckoutPage) swagLabPage).enterLastname(lastname);
+	    assertEquals(lastname, ((SwagLabCheckoutPage) swagLabPage).getLastnameInpt());
 	}
 	
 	@When("the user enters their postcode {string}")
 	public void theUserEntersTheirPostcode(String postcode) {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		swagLabPage = ((SwagLabCheckoutPage) swagLabPage).enterPostcode(postcode);
+	    assertEquals(postcode, ((SwagLabCheckoutPage) swagLabPage).getPostcodeInpt());
 	}
 	
 	@When("the user proceeds to checkout overview")

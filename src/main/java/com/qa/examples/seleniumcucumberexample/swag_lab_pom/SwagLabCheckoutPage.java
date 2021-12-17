@@ -15,7 +15,6 @@ public class SwagLabCheckoutPage implements ISwagLabPage {
 	public String getURL() { return URL; }
 
 	
-	
 	private SwagLabCheckoutInfoFormComponent checkoutInfoForm;
 
 	 
@@ -33,13 +32,26 @@ public class SwagLabCheckoutPage implements ISwagLabPage {
 	}
 
 
-	public ISwagLabPage enterFirstname(String firstname) {
+	public SwagLabCheckoutPage enterFirstname(String firstname) {
 		return checkoutInfoForm.enterFirstnameInptBox(firstname);
 	}
-
 	public String getFirstnameInpt() {
 		return checkoutInfoForm.getFirstnameInpt();
 	}
 
-	
+
+	public SwagLabCheckoutPage enterLastname(String lastname) {
+		return checkoutInfoForm.enterLastnameInptBox(lastname);
+	}
+    public String getLastnameInpt() {
+		return checkoutInfoForm.getLastnameInpt();
+    }
+
+
+	public SwagLabCheckoutPage enterPostcode(String postcode) {
+		return checkoutInfoForm.enterPostcodeInptBox(postcode);
+	}
+    public String getPostcodeInpt() {
+		return checkoutInfoForm.getPostcodeInpt();
+    }
 }
