@@ -2,66 +2,58 @@ package com.qa.examples.seleniumcucumberexample.swag_lab_pom;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
+import com.qa.examples.seleniumcucumberexample.swag_lab_inventory_coms.SwagLabInventoryItemsComponent;
+import com.qa.examples.seleniumcucumberexample.swag_lab_shared_coms.SwagLabPrimaryHeaderComponent;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SwagLabInventoryPage implements ISwagLabPage {
+	
 	public static final String URL = "https://www.saucedemo.com/inventory.html";
-	private static final String EXPECTED_TITLE = "Swag Labs";
-	
+	public static final String EXPECTED_TITLE = "Swag Labs";
 	private WebDriver webDriver;
-	
-	
+
 	@Override
 	public String getURL() { return URL; }
-	@Override
-	public String getExpectedTitle() { return EXPECTED_TITLE; }
 
 	
 	@FindBy(className = "inventory_item")
 	private List<WebElement> inventoryItems;
 	@FindBy(className = "shopping_cart_badge")
 	private WebElement shoppingCartBadge;
-
 	
+	private SwagLabPrimaryHeaderComponent primaryHeader;
+	private SwagLabInventoryItemsComponent productsTable;
+
+	 
 	public SwagLabInventoryPage(WebDriver driver) {
 		this.webDriver = driver;
 		
-		webDriver.get( getURL() );
-		if (!webDriver.getTitle().equals( getExpectedTitle() )) {
-			String exceptionMsg = String.format("The Swag Lab Home Page did not load (%f)", getURL());
+		webDriver.get(URL);
+		if (!webDriver.getTitle().equals(EXPECTED_TITLE)) {
+			String exceptionMsg = String.format("The Swag Lab Home Page did not load (%f)", URL);
 			throw new IllegalStateException(exceptionMsg);
 		}
+
+		primaryHeader = new SwagLabPrimaryHeaderComponent(webDriver, this);
+		PageFactory.initElements(webDriver, primaryHeader);
+		productsTable = new SwagLabInventoryItemsComponent(webDriver, this);
+		PageFactory.initElements(webDriver, productsTable);
 	}
 
 	
-	public List<WebElement> getInventoryItems() {
-		return inventoryItems;
-	}
-	
-	private String getAddToCartButtonId(String itemName) {
-		return "add-to-cart-" + itemName.strip().toLowerCase().replace(' ', '-');
-	}
-	
-	private WebElement getAddToCartButton(String itemName) {
-		return webDriver.findElement( By.id(getAddToCartButtonId(itemName)) );
-	}
-	
 	public SwagLabInventoryPage addItemToCart(String itemName) {
-		getAddToCartButton(itemName).click();
-		return this;
+		return productsTable.addItemToCart(itemName);
 	}
 	
 	public SwagLabInventoryPage addItemsToCart(List<String> itemNames) {
-		for (String itemName : itemNames) {
-			addItemToCart(itemName);
-		}
-		return this;
+		return productsTable.addItemsToCart(itemNames);
 	}
 	
-	public int getNumberOfItemsInCart() {
-		return Integer.parseInt(shoppingCartBadge.getText());
+	public int readShoppingCartBadge() {
+		return primaryHeader.readShoppingCartBadge();
 	}
 }

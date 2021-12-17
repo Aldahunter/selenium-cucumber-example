@@ -1,11 +1,8 @@
 package com.qa.examples.seleniumcucumberexample.stepdefs;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-
-import org.openqa.selenium.WebDriver;
 
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.ISwagLabPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabInventoryPage;
@@ -13,6 +10,8 @@ import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabLoginPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabUtilities;
 import com.qa.examples.seleniumcucumberexample.utils.ScreenshotManager;
 import com.qa.examples.seleniumcucumberexample.utils.SeleniumHooks;
+
+import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -62,7 +61,7 @@ public class SwagLabsUserLoginsStepDefinitions {
 	@Then("they successfully login")
 	public void they_successfully_login() throws IOException {
 		screenshotManager.takeAndSaveScreenshot(webDriver, screenshotDir + "successfulLoginTest - Post Login Page.png");
-		assertTrue(((SwagLabInventoryPage)swagLabPage).getInventoryItems().size() > 0);
+		assertEquals(SwagLabInventoryPage.URL, webDriver.getCurrentUrl());
 	}
 	
 	@Then("they cannot login")

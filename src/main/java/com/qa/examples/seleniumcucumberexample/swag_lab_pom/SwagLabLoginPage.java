@@ -6,16 +6,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class SwagLabLoginPage implements ISwagLabPage {
+	
 	public static final String URL = "https://www.saucedemo.com/";
-	private static final String EXPECTED_TITLE = "Swag Labs";
-
+	public static final String EXPECTED_TITLE = "Swag Labs";
 	private WebDriver webDriver;
-	
-	
+
 	@Override
 	public String getURL() { return URL; }
-	@Override
-	public String getExpectedTitle() { return EXPECTED_TITLE; }
 	
 	
 	@FindBy(id="user-name")
@@ -31,9 +28,9 @@ public class SwagLabLoginPage implements ISwagLabPage {
 	public SwagLabLoginPage(WebDriver driver) {
 		this.webDriver = driver;
 		
-		webDriver.get( getURL() );
-		if (!webDriver.getTitle().equals( getExpectedTitle() )) {
-			String exceptionMsg = String.format("The Swag Lab Login Page did not load (%f)", getURL() );
+		webDriver.get(URL);
+		if (!webDriver.getTitle().equals(EXPECTED_TITLE)) {
+			String exceptionMsg = String.format("The Swag Lab Login Page did not load (%f)", URL);
 			throw new IllegalStateException(exceptionMsg);
 		}
 	}

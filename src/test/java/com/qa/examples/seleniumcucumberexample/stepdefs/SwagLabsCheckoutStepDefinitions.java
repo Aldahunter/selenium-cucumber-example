@@ -43,7 +43,7 @@ public class SwagLabsCheckoutStepDefinitions {
 	    List<String> checkoutItems = dataTable.asList(String.class);
 	    swagLabPage = ((SwagLabInventoryPage) swagLabPage).addItemsToCart(checkoutItems);
 		screenshotManager.takeAndSaveScreenshot(webDriver, screenshotDir + "1-itemsAddedToCart.png");
-	    assertEquals(checkoutItems.size(), ((SwagLabInventoryPage) swagLabPage).getNumberOfItemsInCart());
+	    assertEquals(checkoutItems.size(), ((SwagLabInventoryPage) swagLabPage).readShoppingCartBadge());
 	}
 	
 	@When("the user navigates to the cart")
