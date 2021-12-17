@@ -45,7 +45,7 @@ public class SwagLabCartPage implements ISwagLabPage {
 	}
 
 	
-	public SwagLabCheckoutPage clickCheckoutBtn() {
-		return (SwagLabCheckoutPage) cartFooter.clickCheckoutBtn();
+	public SwagLabCheckoutInfoPage clickCheckoutBtn() {
+		return (SwagLabCheckoutInfoPage) cartFooter.clickCheckoutBtn();
 	}
 }

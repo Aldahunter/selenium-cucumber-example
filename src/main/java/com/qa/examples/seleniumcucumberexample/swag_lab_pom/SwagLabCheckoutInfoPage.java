@@ -1,11 +1,12 @@
 package com.qa.examples.seleniumcucumberexample.swag_lab_pom;
 
+import com.qa.examples.seleniumcucumberexample.swag_lab_checkout_coms.SwagLabCheckoutFooterComponent;
 import com.qa.examples.seleniumcucumberexample.swag_lab_checkout_coms.SwagLabCheckoutInfoFormComponent;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class SwagLabCheckoutPage implements ISwagLabPage {
+public class SwagLabCheckoutInfoPage implements ISwagLabPage {
 	
 	public static final String URL = "https://www.saucedemo.com/checkout-step-one.html";
 	public static final String EXPECTED_TITLE = "Swag Labs";
@@ -16,9 +17,10 @@ public class SwagLabCheckoutPage implements ISwagLabPage {
 
 	
 	private SwagLabCheckoutInfoFormComponent checkoutInfoForm;
+	private SwagLabCheckoutFooterComponent checkoutFooter;
 
 	 
-	public SwagLabCheckoutPage(WebDriver driver) {
+	public SwagLabCheckoutInfoPage(WebDriver driver) {
 		this.webDriver = driver;
 		
 		webDriver.get(URL);
@@ -29,10 +31,12 @@ public class SwagLabCheckoutPage implements ISwagLabPage {
 
 		checkoutInfoForm = new SwagLabCheckoutInfoFormComponent(webDriver, this);
 		PageFactory.initElements(webDriver, checkoutInfoForm);
+		checkoutFooter = new SwagLabCheckoutFooterComponent(webDriver, this);
+		PageFactory.initElements(webDriver, checkoutFooter);
 	}
 
 
-	public SwagLabCheckoutPage enterFirstname(String firstname) {
+	public SwagLabCheckoutInfoPage enterFirstname(String firstname) {
 		return checkoutInfoForm.enterFirstnameInptBox(firstname);
 	}
 	public String getFirstnameInpt() {
@@ -40,7 +44,7 @@ public class SwagLabCheckoutPage implements ISwagLabPage {
 	}
 
 
-	public SwagLabCheckoutPage enterLastname(String lastname) {
+	public SwagLabCheckoutInfoPage enterLastname(String lastname) {
 		return checkoutInfoForm.enterLastnameInptBox(lastname);
 	}
     public String getLastnameInpt() {
@@ -48,10 +52,15 @@ public class SwagLabCheckoutPage implements ISwagLabPage {
     }
 
 
-	public SwagLabCheckoutPage enterPostcode(String postcode) {
+	public SwagLabCheckoutInfoPage enterPostcode(String postcode) {
 		return checkoutInfoForm.enterPostcodeInptBox(postcode);
 	}
     public String getPostcodeInpt() {
 		return checkoutInfoForm.getPostcodeInpt();
     }
+
+
+	public SwagLabCheckoutOverviewPage clickContinueBtn() {
+		return (SwagLabCheckoutOverviewPage) checkoutFooter.clickContinueBtn();
+	}
 }

@@ -1,6 +1,6 @@
 package com.qa.examples.seleniumcucumberexample.swag_lab_checkout_coms;
 
-import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabCheckoutPage;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabCheckoutInfoPage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,9 +9,9 @@ import org.openqa.selenium.support.FindBy;
 public class SwagLabCheckoutInfoFormComponent {
 
     WebDriver webDriver;
-    SwagLabCheckoutPage parentPage;
+    SwagLabCheckoutInfoPage parentPage;
 
-    public SwagLabCheckoutInfoFormComponent(WebDriver driver, SwagLabCheckoutPage swagLabCheckoutPage) {
+    public SwagLabCheckoutInfoFormComponent(WebDriver driver, SwagLabCheckoutInfoPage swagLabCheckoutPage) {
         this.webDriver = driver;
         this.parentPage = swagLabCheckoutPage;
     }
@@ -30,7 +30,7 @@ public class SwagLabCheckoutInfoFormComponent {
     }
 
 
-    public SwagLabCheckoutPage enterFirstnameInptBox(String firstname) {
+    public SwagLabCheckoutInfoPage enterFirstnameInptBox(String firstname) {
 		firstnameInptBox.sendKeys(firstname);
 		return parentPage;
 	}
@@ -39,7 +39,7 @@ public class SwagLabCheckoutInfoFormComponent {
     }
 
 
-    public SwagLabCheckoutPage enterLastnameInptBox(String lastname) {
+    public SwagLabCheckoutInfoPage enterLastnameInptBox(String lastname) {
         lastnameInptBox.sendKeys(lastname);
 		return parentPage;
     }
@@ -48,7 +48,7 @@ public class SwagLabCheckoutInfoFormComponent {
     }
 
 
-    public SwagLabCheckoutPage enterPostcodeInptBox(String postcode) {
+    public SwagLabCheckoutInfoPage enterPostcodeInptBox(String postcode) {
         postcodeInptBox.sendKeys(postcode);
 		return parentPage;
     }

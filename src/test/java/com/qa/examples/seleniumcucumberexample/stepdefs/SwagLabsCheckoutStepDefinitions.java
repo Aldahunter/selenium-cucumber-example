@@ -8,7 +8,9 @@ import org.openqa.selenium.WebDriver;
 
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.ISwagLabPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabCartPage;
-import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabCheckoutPage;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabCheckoutCompletePage;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabCheckoutInfoPage;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabCheckoutOverviewPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabInventoryPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabLoginPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabUtilities;
@@ -57,37 +59,37 @@ public class SwagLabsCheckoutStepDefinitions {
 	@When("the user proceeds to checkout")
 	public void theUserProceedsToCheckout() {
 	    swagLabPage = ((SwagLabCartPage) swagLabPage).clickCheckoutBtn();
-	    assertEquals(SwagLabCheckoutPage.URL, webDriver.getCurrentUrl());
+	    assertEquals(SwagLabCheckoutInfoPage.URL, webDriver.getCurrentUrl());
 	}
 
 	@When("the user enters their firstname {string}")
 	public void theUserEntersTheirFirstname(String firstname) {
-		swagLabPage = ((SwagLabCheckoutPage) swagLabPage).enterFirstname(firstname);
-	    assertEquals(firstname, ((SwagLabCheckoutPage) swagLabPage).getFirstnameInpt());
+		swagLabPage = ((SwagLabCheckoutInfoPage) swagLabPage).enterFirstname(firstname);
+	    assertEquals(firstname, ((SwagLabCheckoutInfoPage) swagLabPage).getFirstnameInpt());
 	}
 
 	@When("the user enters their lastname {string}")
 	public void theUserEntersTheirLastname(String lastname) {
-		swagLabPage = ((SwagLabCheckoutPage) swagLabPage).enterLastname(lastname);
-	    assertEquals(lastname, ((SwagLabCheckoutPage) swagLabPage).getLastnameInpt());
+		swagLabPage = ((SwagLabCheckoutInfoPage) swagLabPage).enterLastname(lastname);
+	    assertEquals(lastname, ((SwagLabCheckoutInfoPage) swagLabPage).getLastnameInpt());
 	}
 	
 	@When("the user enters their postcode {string}")
 	public void theUserEntersTheirPostcode(String postcode) {
-		swagLabPage = ((SwagLabCheckoutPage) swagLabPage).enterPostcode(postcode);
-	    assertEquals(postcode, ((SwagLabCheckoutPage) swagLabPage).getPostcodeInpt());
+		swagLabPage = ((SwagLabCheckoutInfoPage) swagLabPage).enterPostcode(postcode);
+	    assertEquals(postcode, ((SwagLabCheckoutInfoPage) swagLabPage).getPostcodeInpt());
 	}
 	
 	@When("the user proceeds to checkout overview")
 	public void theUserProceedsToCheckoutOverview() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		swagLabPage = ((SwagLabCheckoutInfoPage) swagLabPage).clickContinueBtn();
+	    assertEquals(SwagLabCheckoutOverviewPage.URL, webDriver.getCurrentUrl());
 	}
 	
 	@When("the user confirms the transaction")
 	public void theUserConfirmsTheTransaction() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		swagLabPage = ((SwagLabCheckoutOverviewPage) swagLabPage).clickFinishBtn();
+	    assertEquals(SwagLabCheckoutCompletePage.URL, webDriver.getCurrentUrl());
 	}
 	
 	
