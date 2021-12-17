@@ -94,8 +94,8 @@ public class SwagLabsCheckoutStepDefinitions {
 	
 	
 	@Then("a purchase verification should appear on the screen saying {string}")
-	public void aPurchaseVerificationShouldAppearOnTheScreenSaying(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void aPurchaseVerificationShouldAppearOnTheScreenSaying(String orderCompleteMsg) {
+		assertEquals(orderCompleteMsg, ((SwagLabCheckoutCompletePage) swagLabPage).getorderCompleteMsg());
+		
 	}
 }
