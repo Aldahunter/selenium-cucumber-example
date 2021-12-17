@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.ISwagLabPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabCartPage;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabCheckoutPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabInventoryPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabLoginPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabUtilities;
@@ -55,8 +56,8 @@ public class SwagLabsCheckoutStepDefinitions {
 	
 	@When("the user proceeds to checkout")
 	public void theUserProceedsToCheckout() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    swagLabPage = ((SwagLabCartPage) swagLabPage).clickCheckoutBtn();
+	    assertEquals(SwagLabCheckoutPage.URL, webDriver.getCurrentUrl());
 	}
 	
 	@When("the user enters their details")
