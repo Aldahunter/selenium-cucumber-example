@@ -50,6 +50,8 @@ public class SwagLabsCheckoutStepDefinitions {
 	public void theUserNavigatesToTheCart() {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
+		swagLabPage = ((SwagLabInventoryPage) swagLabPage).clickOnBasket();
+	    assertEquals(SwagLabCartPage.URL, webDriver.getCurrentUrl());
 	}
 	
 	@When("the user proceeds to checkout")
