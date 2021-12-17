@@ -13,6 +13,8 @@ public class SwagLabUtilities {
 				return PageFactory.initElements(webDriver, SwagLabInventoryPage.class);
 			case SwagLabLoginPage.URL:
 				return PageFactory.initElements(webDriver, SwagLabLoginPage.class);
+			case SwagLabCartPage.URL:
+				return PageFactory.initElements(webDriver, SwagLabCartPage.class);
 			default:
 				throw new IllegalStateException(String.format("No Swing Lab POM was found for '%s'", gotoUrl));
 		}

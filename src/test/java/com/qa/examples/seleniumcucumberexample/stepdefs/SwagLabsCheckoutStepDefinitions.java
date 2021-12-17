@@ -7,6 +7,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.ISwagLabPage;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabCartPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabInventoryPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabLoginPage;
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabUtilities;
@@ -48,8 +49,6 @@ public class SwagLabsCheckoutStepDefinitions {
 	
 	@When("the user navigates to the cart")
 	public void theUserNavigatesToTheCart() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
 		swagLabPage = ((SwagLabInventoryPage) swagLabPage).clickOnBasket();
 	    assertEquals(SwagLabCartPage.URL, webDriver.getCurrentUrl());
 	}

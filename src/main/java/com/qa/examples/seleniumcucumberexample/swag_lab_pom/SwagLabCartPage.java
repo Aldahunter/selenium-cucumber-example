@@ -2,7 +2,7 @@ package com.qa.examples.seleniumcucumberexample.swag_lab_pom;
 
 import java.util.List;
 
-import com.qa.examples.seleniumcucumberexample.swag_lab_inventory_coms.SwagLabInventoryItemsComponent;
+import com.qa.examples.seleniumcucumberexample.swag_lab_cart_coms.SwagLabCartFooterComponent;
 import com.qa.examples.seleniumcucumberexample.swag_lab_shared_coms.SwagLabPrimaryHeaderComponent;
 
 import org.openqa.selenium.WebDriver;
@@ -10,9 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SwagLabInventoryPage implements ISwagLabPage {
+public class SwagLabCartPage implements ISwagLabPage {
 	
-	public static final String URL = "https://www.saucedemo.com/inventory.html";
+	public static final String URL = "https://www.saucedemo.com/cart.html";
 	public static final String EXPECTED_TITLE = "Swag Labs";
 	private WebDriver webDriver;
 
@@ -26,38 +26,26 @@ public class SwagLabInventoryPage implements ISwagLabPage {
 	private WebElement shoppingCartBadge;
 	
 	private SwagLabPrimaryHeaderComponent primaryHeader;
-	private SwagLabInventoryItemsComponent productsTable;
+	private SwagLabCartFooterComponent cartFooter;
 
 	 
-	public SwagLabInventoryPage(WebDriver driver) {
+	public SwagLabCartPage(WebDriver driver) {
 		this.webDriver = driver;
 		
 		webDriver.get(URL);
 		if (!webDriver.getTitle().equals(EXPECTED_TITLE)) {
-			String exceptionMsg = String.format("The Swag Lab Inventory Page did not load (%f)", URL);
+			String exceptionMsg = String.format("The Swag Lab Cart Page did not load (%f)", URL);
 			throw new IllegalStateException(exceptionMsg);
 		}
 
 		primaryHeader = new SwagLabPrimaryHeaderComponent(webDriver, this);
 		PageFactory.initElements(webDriver, primaryHeader);
-		productsTable = new SwagLabInventoryItemsComponent(webDriver, this);
-		PageFactory.initElements(webDriver, productsTable);
+		cartFooter = new SwagLabCartFooterComponent(webDriver, this);
+		PageFactory.initElements(webDriver, cartFooter);
 	}
 
 	
-	public SwagLabInventoryPage addItemToCart(String itemName) {
-		return productsTable.addItemToCart(itemName);
+	public SwagLabCheckoutPage clickCheckoutBtn() {
+		return (SwagLabCheckoutPage) cartFooter.clickCheckoutBtn();
 	}
-	
-	public SwagLabInventoryPage addItemsToCart(List<String> itemNames) {
-		return productsTable.addItemsToCart(itemNames);
-	}
-	
-	public int readShoppingCartBadge() {
-		return primaryHeader.readShoppingCartBadge();
-	}
-
-    public SwagLabCartPage clickOnBasket() {
-        return (SwagLabCartPage) primaryHeader.clickOnShoppingCart();
-    }
 }

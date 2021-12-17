@@ -1,6 +1,7 @@
 package com.qa.examples.seleniumcucumberexample.swag_lab_shared_coms;
 
 import com.qa.examples.seleniumcucumberexample.swag_lab_pom.ISwagLabPage;
+import com.qa.examples.seleniumcucumberexample.swag_lab_pom.SwagLabUtilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,8 +29,9 @@ public class SwagLabPrimaryHeaderComponent {
         return Integer.parseInt(shoppingCartBardge.getText().strip());
     }
 
-    public void clickOnShoppingCart() {
+    public ISwagLabPage clickOnShoppingCart() {
         shoppingCartLink.click();
+        return SwagLabUtilities.getSwagLabPage(webDriver, parentPage);
     }
 
 }
