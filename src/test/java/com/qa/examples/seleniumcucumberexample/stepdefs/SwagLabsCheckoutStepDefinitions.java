@@ -59,11 +59,23 @@ public class SwagLabsCheckoutStepDefinitions {
 	    swagLabPage = ((SwagLabCartPage) swagLabPage).clickCheckoutBtn();
 	    assertEquals(SwagLabCheckoutPage.URL, webDriver.getCurrentUrl());
 	}
+
+	@When("the user enters their firstname {string}")
+	public void theUserEntersTheirFirstname(String firstname) {
+		swagLabPage = ((SwagLabCheckoutPage) swagLabPage).enterFirstname(firstname);
+	    assertEquals(firstname, ((SwagLabCheckoutPage) swagLabPage).getFirstnameInpt());
+	}
+
+	@When("the user enters their lastname {string}")
+	public void theUserEntersTheirLastname(String lastname) {
+		// Write code here that turns the phrase above into concrete actions
+		throw new io.cucumber.java.PendingException();
+	}
 	
-	@When("the user enters their details")
-	public void theUserEntersTheirDetails() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@When("the user enters their postcode {string}")
+	public void theUserEntersTheirPostcode(String postcode) {
+		// Write code here that turns the phrase above into concrete actions
+		throw new io.cucumber.java.PendingException();
 	}
 	
 	@When("the user proceeds to checkout overview")

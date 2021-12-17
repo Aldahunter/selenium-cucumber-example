@@ -23,7 +23,9 @@ Feature: Checkout items on secret sauce
 				 | Sauce Labs Bike Light |
 		And the user navigates to the cart
 		And the user proceeds to checkout
-		And the user enters their details
+		And the user enters their firstname 'Alex'
+		And the user enters their lastname 'Hunt'
+		And the user enters their postcode 'SS3 8BS'
 		And the user proceeds to checkout overview
 		And the user confirms the transaction
 		Then a purchase verification should appear on the screen saying "THANK YOU FOR YOUR ORDER"

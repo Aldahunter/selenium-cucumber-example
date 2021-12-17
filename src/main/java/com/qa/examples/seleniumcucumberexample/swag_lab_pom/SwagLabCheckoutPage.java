@@ -1,6 +1,9 @@
 package com.qa.examples.seleniumcucumberexample.swag_lab_pom;
 
+import com.qa.examples.seleniumcucumberexample.swag_lab_checkout_coms.SwagLabCheckoutInfoFormComponent;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class SwagLabCheckoutPage implements ISwagLabPage {
 	
@@ -12,6 +15,10 @@ public class SwagLabCheckoutPage implements ISwagLabPage {
 	public String getURL() { return URL; }
 
 	
+	
+	private SwagLabCheckoutInfoFormComponent checkoutInfoForm;
+
+	 
 	public SwagLabCheckoutPage(WebDriver driver) {
 		this.webDriver = driver;
 		
@@ -20,5 +27,19 @@ public class SwagLabCheckoutPage implements ISwagLabPage {
 			String exceptionMsg = String.format("The Swag Lab Cart Page did not load (%f)", URL);
 			throw new IllegalStateException(exceptionMsg);
 		}
+
+		checkoutInfoForm = new SwagLabCheckoutInfoFormComponent(webDriver, this);
+		PageFactory.initElements(webDriver, checkoutInfoForm);
 	}
+
+
+	public ISwagLabPage enterFirstname(String firstname) {
+		return checkoutInfoForm.enterFirstnameInptBox(firstname);
+	}
+
+	public String getFirstnameInpt() {
+		return checkoutInfoForm.getFirstnameInpt();
+	}
+
+	
 }
